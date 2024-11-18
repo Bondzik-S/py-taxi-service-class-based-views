@@ -1,4 +1,5 @@
-"""taxi_service URL Configuration
+"""
+taxi_service URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -20,10 +21,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-urlpatterns = ([
+urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("taxi.urls", namespace="taxi")),
 ] + static(
     settings.STATIC_URL,
     document_root=settings.STATIC_ROOT
-) + debug_toolbar_urls())
+)
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += \
+        [path("__debug__/", include(debug_toolbar.urls))]
