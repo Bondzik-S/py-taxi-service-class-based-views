@@ -15,7 +15,7 @@ urlpatterns = [
     path("cars/",
          CarListView.as_view(),
          name="car-list"),
-    path("cars/<int:pk>",
+    path("cars/<int:pk>/",
          CarDetailView.as_view(),
          name="car-detail"),
     path("drivers/",
